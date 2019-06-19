@@ -1,6 +1,7 @@
 {
   "name": "github-finder-react",
   "version": "0.1.0",
+  "author": "Kyle Lynch",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
