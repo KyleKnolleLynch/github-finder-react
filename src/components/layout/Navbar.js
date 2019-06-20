@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Navbar = ({ navIcon, title }) => {
@@ -6,14 +7,22 @@ const Navbar = ({ navIcon, title }) => {
     <div className="navbar bg-primary">
       <h1>
         <i className={navIcon} />
-        {title}
+        <Link to="/">{title}</Link>
       </h1>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to='/about'>About</Link>
+        </li>
+      </ul>
     </div>
   );
 };
 
 Navbar.defaultProps = {
-  title: 'Github finder',
+  title: 'Github Finder',
   navIcon: 'fab fa-github px'
 };
 
