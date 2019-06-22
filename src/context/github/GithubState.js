@@ -7,9 +7,7 @@ import {
   GET_USER,
   CLEAR_USERS,
   GET_REPOS,
-  SET_LOADING,
-  SET_ALERT,
-  REMOVE_ALERT
+  SET_LOADING
 } from '../types';
 
 const GithubState = props => {
@@ -55,6 +53,20 @@ const GithubState = props => {
   };
 
   //  Get Repos
+  const getUserRepos = async username => {
+    setLoading();
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${
+        process.env.REACT_APP_GITHUB_CLIENT_ID
+      }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    dispatch({
+      type: GET_REPOS,
+      payload: res.data
+    });
+  };
 
   //  Clear Users
   const clearUsers = () => dispatch({ type: CLEAR_USERS });
@@ -71,6 +83,7 @@ const GithubState = props => {
         loading: state.loading,
         searchUsers,
         getUser,
+        getUserRepos,
         clearUsers
       }}
     >
